@@ -16,7 +16,7 @@ async function main () {
                 "browserName":"",
                 "appium:ensureWebviewsHavePages":true,
                 "appium:nativeWebScreenshot":true,
-                "sauce:options":{"name":"Appium Desktop Session -- Dec 25, 2022 5:53 PM"},
+                "sauce:options":{"name":"Nome teste Appium Desktop Session -- Dec 25, 2022 5:53 PM"},
                 "appium:newCommandTimeout":3600,"appium:connectHardwareKeyboard":true
               }
   const driver = await wdio.remote({

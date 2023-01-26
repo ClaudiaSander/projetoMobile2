@@ -43,7 +43,8 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-        // 'path/to/excluded/files'
+        './features/**/login.feature',
+        './features/**/calcular.feature'
     ],
     //
     // ============
@@ -72,14 +73,14 @@ exports.config = {
         "appium:platformVersion":"9.0",
         "appium:deviceName":"Galaxy S9 FHD GoogleAPI Emulator",
         "appium:deviceOrientation":"portrait",
-        "appium:app":"storage:filename=mda-1.0.16-19.apk",
-        "appium:appPackage":"com.saucelabs.mydemoapp.android",
-        "appium:appActivity":"com.saucelabs.mydemoapp.android.view.activities.SplashActivity",
-        "browserName":"",
-        "appium:ensureWebviewsHavePages":true,
+        "appium:app":"storage:filename=Petz_ Pet shop Online_5.10.1_Apkpure.apk",
+        "appium:appPackage":"br.com.petz",
+        "appium:appActivity":"br.com.hanzo.petz.view.MainActivity",
+        "browserName":"","appium:ensureWebviewsHavePages":true,
         "appium:nativeWebScreenshot":true,
-        "sauce:options":{"name":"Appium Aula Final"},
-        "appium:newCommandTimeout":3600,"appium:connectHardwareKeyboard":true
+        "sauce:options":{"name":"Loja Petz"},
+        "appium:newCommandTimeout":3600,
+        "appium:connectHardwareKeyboard":true
     }],
     //
     // ===================

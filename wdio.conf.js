@@ -73,7 +73,7 @@ exports.config = {
         "appium:platformVersion":"9.0",
         "appium:deviceName":"Galaxy S9 FHD GoogleAPI Emulator",
         "appium:deviceOrientation":"portrait",
-        "appium:app":"storage:filename=Petz_ Pet shop Online_5.10.1_Apkpure.apk",
+        "appium:app":"storage:filename=Petz_ Pet shop Online_5.11.0_Apkpure.apk",
         "appium:appPackage":"br.com.petz",
         "appium:appActivity":"br.com.hanzo.petz.view.MainActivity",
         "browserName":"","appium:ensureWebviewsHavePages":true,

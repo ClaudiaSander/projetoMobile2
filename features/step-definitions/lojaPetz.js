@@ -2,21 +2,6 @@ const { Given, When, Then, After } = require("@wdio/cucumber-framework")
 const barraPesquisa = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView'
 
 Given (/^que entrei no aplicativo da Petz e estou na pagina de pesquisa$/,async () => {
-    // validar se apresentou campo para informar usario
-    /*
-    const user = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.EditText'
-    await $(user).waitForDisplayed()
-    await $(user).setValue('')
-
-    const senha ='/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.EditText'
-    await $(senha).waitForDisplayed()
-    await $(senha).setValue('')
-    
-    const botaoEntrar = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.TextView'
-    await $(botaoEntrar).waitForDisplayed()
-    await $(botaoEntrar).click()
-    */
-
     // entrar sem login
     const comecarSemLogin = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout[2]/android.widget.TextView'
     await $(comecarSemLogin).waitForDisplayed()
@@ -31,8 +16,7 @@ When(/^pesquiso o produto "([^"]*)?"$/, async (textoPesquisa) => {
     const campoPesquisa = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.EditText'
     await $(campoPesquisa).waitForDisplayed()
     await $(campoPesquisa).setValue(textoPesquisa)
-    })
-
+})
 
 When(/^aciono a consulta$/, async () => {
     const enter = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout'
@@ -40,20 +24,42 @@ When(/^aciono a consulta$/, async () => {
     await $(enter).click()
 })
 
-When(/^clico na imagem da racao$/, async () => {    
-    const imagem = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]'
-    await $(imagem).waitForDisplayed()
-    await $(imagem).click()
-})
-
 Then(/^visualizo a racao "([^"]*)?"$/, async (nomeEsperado) => {
-    const nomeRacao = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.TextView[1]'   
+    const nomeRacao = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.TextView'
     await $(nomeRacao).waitForDisplayed()
     expect(await $(nomeRacao).getText()).toEqual(nomeEsperado)
 })
 
-Then(/^visualizo o preco "([^"]*)?"$/, async (precoEsperado) => {
-    const precoRacao = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.TextView[1]'   
-    await $(precoRacao).waitForDisplayed()
-    expect(await $(precoRacao).getText()).toEqual(precoEsperado)
+When (/^adiciono o produto ao carrinho$/, async () => {
+    const botaoAdicionar = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.LinearLayout/android.widget.Button'
+    await $(botaoAdicionar).waitForDisplayed()
+    await $(botaoAdicionar).click()
+})
+
+Then(/^mensagem "([^"]*)?"$/, async (msgEsperada) => {
+    const msg = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView[1]'
+    await $(msg).waitForDisplayed()
+    expect(await $(msg).getText()).toEqual(msgEsperada)
+})
+
+When (/^vou para o carrinho$/, async () => {
+    const irParaCarrinho = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[2]'
+    await $(irParaCarrinho).waitForDisplayed()
+    await $(irParaCarrinho).click()
+})
+
+Then(/^subtotal tem quantidade "([^"]*)?" e valor "([^"]*)?"$/, async (qtdSubtotEsperada, valorSubtotEsperado) => {
+    const qtdSubTot = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.TextView[2]'
+    await $(qtdSubTot).waitForDisplayed()
+    expect(await $(qtdSubTot).getText()).toEqual(qtdSubtotEsperada)
+
+    const valorSubTot = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.TextView[4]'
+    await $(valorSubTot).waitForDisplayed()
+    expect(await $(valorSubTot).getText()).toEqual(valorSubtotEsperado)
+})
+
+When (/^adiciono mais uma unidade do produto desejado$/, async () => {
+    const maisUm = '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup/android.widget.LinearLayout[3]/android.widget.RelativeLayout[3]/android.widget.ImageView'
+    await $(maisUm).waitForDisplayed()
+    await $(maisUm).click()
 })

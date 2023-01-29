@@ -1,5 +1,5 @@
 Feature: Loja da Petz
-    Scenario: Comprar duas unidades de determinado produto
+    Scenario: Colocar duas unidades de determinado produto no carrinho
         Given que entrei no aplicativo da Petz e estou na pagina de pesquisa
         When pesquiso o produto "premier filhotes pelos longos"
         And aciono a consulta
